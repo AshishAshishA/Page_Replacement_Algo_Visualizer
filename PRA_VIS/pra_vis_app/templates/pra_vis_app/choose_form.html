@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <h1 style="margin-left: 20%; margin-top: 3%;">Page Replacement Algrorithm Visualizer</h1>
+{% endblock %}
+
+{% block contents %}
+  
+<div class="mb-3" style="width: 40%; align-content: center; margin-left: 30%; margin-top: 10%; padding: 10px; background-color: #f5f5f5;">
+  <form method="post" action="{% url 'fifo_lru' %}">
+    {% csrf_token %}
+    <label for="frame" class="form-label"><b>Choose Frame Size</b></label>
+    <select name="frame" class="form-select" id="frame">
+        <option value="1">1 PAGE</option>
+        <option value="2">2 PAGE</option>
+        <option value="3">3 PAGE</option>
+        <option value="4">4 PAGE</option>
+        <option value="5">5 PAGE</option>
+        <option value="6">6 PAGE</option>
+    </select>
+    <button type="submit" class="btn btn-primary" style="margin-top: 4px;">FIFO and LRU Visualizer</button>
+  </form>
+
+  <br>
+
+  <form method="">
+    {% csrf_token %}
+    <label for="frame" class="form-label"><b>Choose Frame Size</b></label>
+    <select name="frame" class="form-select" id="frame">
+        <option value="1">1 PAGE</option>
+        <option value="2">2 PAGE</option>
+        <option value="3">3 PAGE</option>
+        <option value="4">4 PAGE</option>
+        <option value="5">5 PAGE</option>
+        <option value="6">6 PAGE</option>
+    </select>
+    <button type="submit" class="btn btn-primary" style="margin-top: 4px;">OPRA Visualizer(not available)</button>
+  </form>
+</div>
+
+{% endblock %}

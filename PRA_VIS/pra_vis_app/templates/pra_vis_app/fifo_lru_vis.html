@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+<h1 style="margin-left: 12%; margin-top: 5%;">FIFO And LRU Page Replacement Algrorithm Visualizer</h1>
+{% endblock %}
+
+{% block contents %}
+<div style="width: 70%; max-height: 50%; margin-left: 15%; ">
+  <div class="mb-3">
+    <form method="post" action="{% url 'fifo_lru_working' %}">
+      {% csrf_token %}
+      <label for="page" class="form-label"><b>Enter a page Number</b></label>
+      <input type="number" id="page" name="page" min="0" class="form-control">
+
+      <button type="submit" class="btn btn-primary" style="margin-left: 40%; margin-top: 3px;">Submit</button>
+    </form>
+  </div>
+
+  <div style="width: 100%; margin-left: 0%; background-color: #f5f5f5; padding: 10px;" class="tables-container">
+    <table class="table" style="width: 25%;">
+      <tr class="table-success">
+        <th scope="col">Page Table</th>
+      </tr>
+      {% for page in pages_fifo %}
+      <tr class="table-info">
+        {% if page == -1 %}
+          <td scope="col" style="background-color: #f5f5f5;">.</td>
+        {% elif page != curr_page %}
+          <td scope="col">page {{page}}</td>
+        {% elif page == curr_page %}
+          <td scope="col" class="table-danger">page {{page}}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+      <h3>page_fault_fifo : {{page_fault_fifo}}</h3>
+    </table>
+
+    <table class="table" style="width: 25%;">
+      <tr class="table-success">
+        <th scope="col">Page Table</th>
+      </tr>
+      {% for page in pages_lru %}
+      <tr class="table-info">
+        {% if page == -1 %}
+          <td scope="col" style="background-color: #f5f5f5;">.</td>
+        {% elif page != curr_page %}
+          <td scope="col">page {{page}}</td>
+        {% elif page == curr_page %}
+          <td scope="col" class="table-danger">page {{page}}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+      <h3>page_fault_lru : {{page_fault_lru}}</h3>
+    </table>
+  </div>
+</div>
+{% endblock %}
